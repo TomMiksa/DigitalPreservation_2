@@ -17,7 +17,8 @@ import java.util.List;
 public class Main {
 
         private static final String RESOURCESPATH = "src/main/res/";
-
+        private static FilesAnalyzer filesAnalyzer;
+        private static TISSClient TISSClient;
 
         @RequestMapping("/")
         public String homepage() {
@@ -46,22 +47,29 @@ public class Main {
         }
 
         public static void main(String[] args) {
-                ArrayList<File> files = new ArrayList<>();
+            ArrayList<File> files = new ArrayList<>();
 
-                File file1 = new File(RESOURCESPATH+"FILE1");
-                File file2 = new File(RESOURCESPATH+"FILE2");
-                File file3 = new File(RESOURCESPATH+"FILE3");
+            File file1 = new File(RESOURCESPATH+"FILE1");
+            File file2 = new File(RESOURCESPATH+"FILE2");
+            File file3 = new File(RESOURCESPATH+"FILE3");
 
-                files.add(file1);
-                files.add(file2);
-                files.add(file3);
+            files.add(file1);
+            files.add(file2);
+            files.add(file3);
 
-                FilesAnalyzer filesAnalyzer = new FilesAnalyzer();
-                List<AnalyzedFile> analyzedFiles = filesAnalyzer.analyze(files);
+            filesAnalyzer = new FilesAnalyzer();
+            List<AnalyzedFile> analyzedFiles = filesAnalyzer.analyze(files);
 
-                Iterator iterator = analyzedFiles.iterator();
-                while(iterator.hasNext()){
-                        System.out.println(iterator.next().toString());
-                }
+            for (Object analyzedFile : analyzedFiles) {
+                System.out.println(analyzedFile.toString());
+            }
+
+
+            TISSClient = new TISSClient();
+            try {
+                    List<TISSEmployee> searchedEmployes = TISSClient.sendGet("Lukas");
+            } catch (Exception e) {
+                    e.printStackTrace();
+            }
         }
 }
