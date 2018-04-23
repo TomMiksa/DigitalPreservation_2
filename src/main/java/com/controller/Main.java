@@ -102,5 +102,12 @@ public class Main {
             } catch (Exception e) {
                     e.printStackTrace();
             }
+
+            RepositoryFinder repositoryFinder = new RepositoryFinder();
+            try {
+                repositoryFinder.sendGet(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 }
