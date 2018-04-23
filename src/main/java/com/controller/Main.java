@@ -3,11 +3,14 @@ package com.controller;
 
 import org.apache.tika.Tika;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.servlet.ServletInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,6 +29,35 @@ public class Main {
                 return "homepage";
 
         }
+
+        @RequestMapping(value = "doUpload", method = RequestMethod.POST)
+        public String doUpload(@RequestParam("files") MultipartFile[] files) {
+
+            for (MultipartFile file : files) {
+                if (!file.getOriginalFilename().isEmpty()) {
+
+                    try {
+                        System.out.println("uploading...");
+                        BufferedOutputStream outputStream = new BufferedOutputStream(
+                                new FileOutputStream(
+                                        new File(RESOURCESPATH, file.getOriginalFilename())));
+
+                        outputStream.write(file.getBytes());
+                        outputStream.flush();
+                        outputStream.close();
+                    } catch(IOException e){
+                        e.printStackTrace();
+                    }
+                } else {
+                    System.out.println("empty file");
+                }
+            }
+
+
+
+            return "homepage";
+        }
+
 
         /*
         @RequestMapping(value = "getStationsVienna")

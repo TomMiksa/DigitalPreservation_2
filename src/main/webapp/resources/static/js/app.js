@@ -5,7 +5,9 @@ app.config(function($routeProvider){
             templateUrl: 'resources/static/views/license.html',
             controller: 'licenseController'
         })
-        .otherwise(
+        .when('/upload', {
+            templateUrl: 'resources/static/views/upload.html'
+        }).otherwise(
             { redirectTo: '/'}
         );
 });
