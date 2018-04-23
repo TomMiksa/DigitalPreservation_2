@@ -1,4 +1,5 @@
 package com.controller;
+import com.dto.AnalyzedFile;
 import org.apache.tika.Tika;
 
 import java.io.File;

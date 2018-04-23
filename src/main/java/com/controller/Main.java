@@ -1,19 +1,18 @@
 package com.controller;
 
 
-import org.apache.tika.Tika;
+import com.dto.AnalyzedFile;
+import com.dto.TISSEmployee;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import javax.servlet.ServletInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Controller
