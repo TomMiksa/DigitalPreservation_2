@@ -31,5 +31,8 @@
 
 <link rel="stylesheet" href="./webjars/bootstrap/3.3.6/css/bootstrap.css">
 
+<link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
+<script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
+
 </body>
 </html>
