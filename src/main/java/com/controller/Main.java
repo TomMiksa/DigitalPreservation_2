@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -51,7 +52,7 @@ public class Main {
         }
 
         @RequestMapping(value = "doUpload", method = RequestMethod.POST)
-        public String doUpload(@RequestParam("files") MultipartFile[] files) {
+        public @ResponseBody List<AnalyzedFile> doUpload(@RequestParam("files") MultipartFile[] files) {
 
             for (MultipartFile file : files) {
                 if (!file.getOriginalFilename().isEmpty()) {
@@ -74,8 +75,12 @@ public class Main {
             }
 
 
+            ArrayList<File> filesInDirectory = new ArrayList<>(Arrays.asList(new File(RESOURCESPATH).listFiles()));
 
-            return "homepage";
+            filesAnalyzer = new FilesAnalyzer();
+            List<AnalyzedFile> analyzedFiles = filesAnalyzer.analyze(filesInDirectory);
+
+            return analyzedFiles;
         }
 
 
