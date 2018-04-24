@@ -111,9 +111,11 @@ public class Main {
 
             filesAnalyzer = new FilesAnalyzer();
             List<AnalyzedFile> analyzedFiles = filesAnalyzer.analyze(files);
+            List<String> mimeTypes = new ArrayList<>();
 
-            for (Object analyzedFile : analyzedFiles) {
+            for (AnalyzedFile analyzedFile : analyzedFiles) {
                 System.out.println(analyzedFile.toString());
+                mimeTypes.add(analyzedFile.getType());
             }
 
 
@@ -126,7 +128,7 @@ public class Main {
 
             RepositoryFinder repositoryFinder = new RepositoryFinder();
             try {
-                repositoryFinder.sendGet(null);
+                repositoryFinder.sendGet(mimeTypes);
             } catch (Exception e) {
                 e.printStackTrace();
             }
