@@ -40,6 +40,46 @@ app.controller('formController', function($scope, $http) {
     };
 
 
+    $scope.processFileOptionsForm = function() {
+
+        var $inputs = $('#fileOptionsForm :input,selection');
+        var data = [];
+        var i = -1;
+        $inputs.each(function() {
+            var name = this.name;
+            name = name.replace("[]", "");
+
+            console.log(name + " " + $(this).val());
+            if(name == "name"){
+                i++;
+                data[i] = {
+                    "name" : $(this).val(),
+                    "type" : "",
+                    "size" : "",
+                    "isOutput" : "",
+                    "quantity" : ""
+                };
+            } else if(name != "") {
+                data[i][name] = $(this).val();
+            }
+        });
+
+        $http({
+            method  : 'POST',
+            url     : 'setFileOptions',
+            data    : data,
+            headers : { 'Content-Type': 'application/json' }
+        }).success(function(data) {
+            console.log(data);
+
+
+        }).error(function() {
+            console.log("request failed...");
+
+        });
+    };
+
+
     $scope.processDataForm = function() {
 
         var data = new FormData();
@@ -66,15 +106,15 @@ app.controller('formController', function($scope, $http) {
                 angular.forEach(response, function(value, key) {
                     console.log(value);
 
-                    $("#filesTable").append("<tr><td>"+value.name+"</td><td>"+value.size+"</td><td>"+value.type
-                        +"</td><td><select><option>Output</option><option>Input</option></select>"
+                    $("#filesTable").append("<tr><td><input disabled name='name[]' value='"+value.name+"'>"
+                        +"</td><td><input disabled name='size[]' value='"+value.size+"'>"
+                        +"</td><td><input disabled name='type[]' value='"+value.type+"'>"
+                        +"</td><td><select name='output[]'><option value='true'>Output</option><option value='false'>Input</option></select>"
                         +"</td><td><input type='number' value='1' min='0' name='quantity[]'></td></tr>")
-
-
 
                 });
             },
-            error: function() { console.log("General error occured", "e"); },
+            error: function() { console.log("error", "e"); },
             complete: function() {  }
         });
 

@@ -5,73 +5,76 @@
     <title>Title</title>
 </head>
 <body>
-
 <div class="container pt-5">
-    <h2>Name Selection</h2>
-
-    <div class="row">
-        <div class="col-md-4">
-            <form ng-submit="processNameForm()">
-                <div id="name-group" class="form-group" ng-class="{ 'has-error' : errorName }">
-                    <label>Name</label>
-                    <input type="text" ng-model="formData.name" name="name" class="form-control" value="foo" placeholder="Bruce Wayne">
-                    <span class="help-block" ng-show="errorName">{{ errorName }}</span>
-                </div>
-
-                <button type="submit" class="btn btn-success btn-lg btn-block">
-                    Search
-                </button>
-            </form>
+    <div class="card">
+        <div class="card-header">
+            Name Selection
         </div>
-
-        <div class="col-md-8">
-            <div class="form-group">
-                <label>Select your TISS ID and name</label>
-                <select class="form-control" ng-model="nameSelect" ng-options="c.nameSelect for c in nameSelects | orderBy:'nameSelect'" size="5">
-
-                </select>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <form ng-submit="processNameForm()">
+                        <div id="name-group" class="form-group" ng-class="{ 'has-error' : errorName }">
+                            <label>Name</label>
+                            <input type="text" ng-model="formData.name" name="name" class="form-control" value="foo" placeholder="Bruce Wayne">
+                            <span class="help-block" ng-show="errorName">{{ errorName }}</span>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg btn-block">
+                            Search
+                        </button>
+                    </form>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label>Select your TISS ID and name</label>
+                        <select class="form-control" ng-model="nameSelect" ng-options="c.nameSelect for c in nameSelects | orderBy:'nameSelect'" size="5">
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="row pt-5">
-        <div class="col-md-4">
-
-            <h2>Sample File Analyzer</h2>
-
-            <form ng-submit="processDataForm()" id="uploadForm" enctype="multipart/form-data">
-                <div class="form-group">
-                    <input type="file" class="form-control" id="files" ng-model="files" name="files" multiple>
+    <div class="card mt-5">
+        <div class="card-header">
+            Sample File Analyzer
+        </div>
+        <div class="card-body">
+            <div class="row pt-5">
+                <div class="col-md-4">
+                    <form ng-submit="processDataForm()" id="uploadForm" enctype="multipart/form-data">
+                        <div class="form-group float-left">
+                            <input type="file" class="form-control float-left" id="files" ng-model="files" name="files" multiple>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg float-left">
+                            Analyze Files
+                        </button>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-success btn-lg btn-block">
-                    Analyze Files
-                </button>
-            </form>
+            </div>
+            <div class="row pt-5">
+                <div class="col-md-12">
+                    <form ng-submit="processFileOptionsForm()" id="fileOptionsForm">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">State</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                            </thead>
+                            <tbody id="filesTable">
+                            </tbody>
+                        </table>
+                        <button type="submit" class="btn btn-success btn-lg btn-block">
+                            Generate Repositories Suggestions
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="row pt-5">
-        <form ng-submit="processNameForm()">
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Size</th>
-                <th scope="col">Type</th>
-                <th scope="col">State</th>
-                <th scope="col">Quantity</th>
-            </tr>
-            </thead>
-            <tbody id="filesTable">
-
-            </tbody>
-        </table>
-
-        </form>
-    </div>
 </div>
-
-
-
 </body>
 </html>

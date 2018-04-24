@@ -19,7 +19,7 @@ public class FilesAnalyzer {
             File file = (File) iterator.next();
             try {
                 String type = new Tika().detect(file);
-                AnalyzedFile uploadFile = new AnalyzedFile(file.getName(), file.length(), type);
+                AnalyzedFile uploadFile = new AnalyzedFile(file.getName(), file.length(), type, null, null);
                 analyzedFiles.add(uploadFile);
             } catch(IOException e){
                 e.printStackTrace();

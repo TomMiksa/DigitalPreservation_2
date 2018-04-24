@@ -22,6 +22,7 @@ public class Main {
         private static final String RESOURCESPATH = "src/main/res/";
         private static FilesAnalyzer filesAnalyzer;
         private static TISSClient TISSClient;
+        private List<AnalyzedFile> analyzedFiles;
 
         @RequestMapping("/")
         public String homepage() {
@@ -44,8 +45,20 @@ public class Main {
             return searchedEmployes;
         }
 
+        @RequestMapping(value="setFileOptions", method = RequestMethod.POST, consumes = {"application/json;charset=UTF-8"}, produces={"application/json;charset=UTF-8"})
+        public @ResponseBody List<AnalyzedFile> setFileOptions(@RequestBody List<AnalyzedFile> file){
+
+            System.out.println(file.toString());
+
+            return analyzedFiles;
+        }
+
         @RequestMapping(value = "doUpload", method = RequestMethod.POST)
         public @ResponseBody List<AnalyzedFile> doUpload(@RequestParam("files") MultipartFile[] files) {
+
+            File dir = new File(RESOURCESPATH);
+            dir.mkdir();
+
 
             for (MultipartFile file : files) {
                 if (!file.getOriginalFilename().isEmpty()) {
@@ -71,7 +84,7 @@ public class Main {
             ArrayList<File> filesInDirectory = new ArrayList<>(Arrays.asList(new File(RESOURCESPATH).listFiles()));
 
             filesAnalyzer = new FilesAnalyzer();
-            List<AnalyzedFile> analyzedFiles = filesAnalyzer.analyze(filesInDirectory);
+            analyzedFiles = filesAnalyzer.analyze(filesInDirectory);
 
             return analyzedFiles;
         }

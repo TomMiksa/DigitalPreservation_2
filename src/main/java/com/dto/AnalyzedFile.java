@@ -1,33 +1,24 @@
 package com.dto;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class AnalyzedFile {
 
     private String name;
     private Long size;
     private String type;
     private Integer quantity;
-    private Boolean isOutput;
+    private Boolean output;
 
-    public AnalyzedFile(String name, Long size, String type) {
+    public AnalyzedFile() {
+    }
+
+    public AnalyzedFile(String name, Long size, String type, Integer quantity, Boolean output) {
         this.name = name;
         this.size = size;
         this.type = type;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public Boolean getOutput() {
-        return isOutput;
-    }
-
-    public void setOutput(Boolean output) {
-        isOutput = output;
+        this.output = output;
     }
 
     public String getName() {
@@ -54,6 +45,22 @@ public class AnalyzedFile {
         this.type = type;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Boolean getOutput() {
+        return output;
+    }
+
+    public void setOutput(Boolean output) {
+        this.output = output;
+    }
+
     @Override
     public String toString() {
         return "AnalyzedFile{" +
@@ -61,7 +68,7 @@ public class AnalyzedFile {
                 ", size=" + size +
                 ", type='" + type + '\'' +
                 ", quantity=" + quantity +
-                ", isOutput=" + isOutput +
+                ", output=" + output +
                 '}';
     }
 }
