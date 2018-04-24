@@ -26,8 +26,8 @@
 
         <div class="col-md-8">
             <div class="form-group">
-                <label>Select your Name</label>
-                <select class="form-control" ng-model="nameSelect" ng-options="c.nameSelect for c in nameSelects" size="5">
+                <label>Select your TISS ID and name</label>
+                <select class="form-control" ng-model="nameSelect" ng-options="c.nameSelect for c in nameSelects | orderBy:'nameSelect'" size="5">
 
                 </select>
             </div>

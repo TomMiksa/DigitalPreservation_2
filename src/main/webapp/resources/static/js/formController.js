@@ -16,16 +16,20 @@ app.controller('formController', function($scope, $http) {
                 angular.forEach(data, function(value, key) {
                     var name = '';
 
-                    if(value.precedingTitle != undefined)
+                    if(value.tissId !== undefined && value.tissId!=null){
+                        name += value.tissId+' ';
+                    }
+
+                    if(value.precedingTitle !== undefined && value.precedingTitle !=null)
                         name += value.precedingTitle+' ';
 
                     name += value.firstName+' '+value.lastName;
 
-                    if(value.postpositionedTitle != undefined)
+                    if(value.postpositionedTitle !== undefined && value.postpositionedTitle !=null)
                         name += ', '+value.postpositionedTitle;
 
                     $scope.nameSelects.push({nameSelect:name, value:name});
-                })
+                });
 
                 $scope.nameSelect = $scope.nameSelects[0];
 
