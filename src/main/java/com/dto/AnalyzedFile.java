@@ -5,11 +5,29 @@ public class AnalyzedFile {
     private String name;
     private Long size;
     private String type;
+    private Integer quantity;
+    private Boolean isOutput;
 
     public AnalyzedFile(String name, Long size, String type) {
         this.name = name;
         this.size = size;
         this.type = type;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Boolean getOutput() {
+        return isOutput;
+    }
+
+    public void setOutput(Boolean output) {
+        isOutput = output;
     }
 
     public String getName() {
@@ -42,6 +60,8 @@ public class AnalyzedFile {
                 "name='" + name + '\'' +
                 ", size=" + size +
                 ", type='" + type + '\'' +
+                ", quantity=" + quantity +
+                ", isOutput=" + isOutput +
                 '}';
     }
 }
