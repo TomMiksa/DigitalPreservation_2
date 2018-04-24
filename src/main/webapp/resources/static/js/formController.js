@@ -72,6 +72,19 @@ app.controller('formController', function($scope, $http) {
         }).success(function(data) {
             console.log(data);
 
+            $scope.repoSelects = [];
+            angular.forEach(data, function(value, key) {
+                var name = '';
+                name += value.name;
+                if(value.url !== undefined && value.url!=null){
+                    name+=': '+value.url;
+                }
+
+                $scope.repoSelects.push({repoSelect:name, value:name});
+            });
+
+            $scope.repoSelect = $scope.repoSelects[0];
+
 
         }).error(function() {
             console.log("request failed...");

@@ -9,6 +9,6 @@ app.config(function($routeProvider){
             templateUrl: 'resources/static/views/license.html',
             controller: 'licenseController'
         }).otherwise(
-            { redirectTo: '/'}
+            { redirectTo: '/form'}
         );
 });

@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dto.Repository;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -10,19 +11,18 @@ import org.json.XML;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class RepositoryFinder {
 
     // HTTP GET request
     // repositories from AT are preferred over other european repositories
-    public Map<String,String> sendGet(List<String> mimeTypes) throws Exception {
-        Map<String, String> repositoriesUrls = new HashMap<>();
+    public List<Repository> sendGet(List<String> mimeTypes) throws Exception {
+        List<Repository> repositories = new ArrayList<>();
         String country = "at";
         String contentTypes = "";
-        if(mimeTypes!= null) {
+        if(mimeTypes!= null && !mimeTypes.isEmpty()) {
             country+=",al,by,be,ba,bg,hr,cy,cz,dk,ee,fi,fr,de,gr,hu,is,ie,it,lv," +
                     "lt,lu,mk,mt,md,nl,no,pl,pt,ro,ru,rs,si,es,se,ch,ua,gb";
             if (mimeTypes.toString().contains("image") || mimeTypes.toString().contains("audio") ||
@@ -66,7 +66,7 @@ public class RepositoryFinder {
                 if(count>0){
                     JSONObject repo = (JSONObject) jsonArray.get(i);
                     if(repo.getJSONObject("country").getString("cIsoCode").equals("AT")){
-                        repositoriesUrls.put(repo.getString("rName"), repo.getString("oUrl"));
+                        repositories.add(new Repository(repo.getString("rName"),repo.getString("oUrl")));
                         count--;
                     }
                 }
@@ -77,7 +77,7 @@ public class RepositoryFinder {
                     if(count>0){
                         JSONObject repo = (JSONObject) jsonArray.get(i);
                         if(!repo.getJSONObject("country").getString("clsoCode").equals("AT")){
-                            repositoriesUrls.put(repo.getString("rName"), repo.getString("oUrl"));
+                            repositories.add(new Repository(repo.getString("rName"),repo.getString("oUrl")));
                             count--;
                         }
                     }
@@ -85,6 +85,6 @@ public class RepositoryFinder {
             }
         }
 
-        return repositoriesUrls;
+        return repositories;
     }
 }

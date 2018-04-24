@@ -2,6 +2,7 @@ package com.controller;
 
 
 import com.dto.AnalyzedFile;
+import com.dto.Repository;
 import com.dto.TISSEmployee;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -46,11 +47,23 @@ public class Main {
         }
 
         @RequestMapping(value="setFileOptions", method = RequestMethod.POST, consumes = {"application/json;charset=UTF-8"}, produces={"application/json;charset=UTF-8"})
-        public @ResponseBody List<AnalyzedFile> setFileOptions(@RequestBody List<AnalyzedFile> file){
+        public @ResponseBody List<Repository> setFileOptions(@RequestBody List<AnalyzedFile> files){
+            List<String> mimeTypes = new ArrayList<>();
+            for (AnalyzedFile analyzedFile: files) {
+                if(analyzedFile.getOutput()) {
+                    if (mimeTypes.isEmpty() || !mimeTypes.contains(analyzedFile.getType())) {
+                        mimeTypes.add(analyzedFile.getType());
+                    }
+                }
+            }
+            RepositoryFinder repositoryFinder = new RepositoryFinder();
+            try {
+                return repositoryFinder.sendGet(mimeTypes);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-            System.out.println(file.toString());
-
-            return analyzedFiles;
+            return null;
         }
 
         @RequestMapping(value = "doUpload", method = RequestMethod.POST)
@@ -89,59 +102,10 @@ public class Main {
             return analyzedFiles;
         }
 
-
-        /*
-        @RequestMapping(value = "getStationsVienna")
-        @ResponseBody
-        public List<Station> getStationVienna() {
-
-            return dataProcessor.getStationsVienna();
-        }
-
-        @RequestMapping(value = "getStationsBudapest")
-        @ResponseBody
-        public List<Station> getStationBudapest() {
-
-            return dataProcessor.getStationsBudapest();
-        }*/
-
         public Main(){
 
         }
 
         public static void main(String[] args) {
-            ArrayList<File> files = new ArrayList<>();
-
-            File file1 = new File(RESOURCESPATH+"FILE1");
-            File file2 = new File(RESOURCESPATH+"FILE2");
-            File file3 = new File(RESOURCESPATH+"FILE3");
-
-            files.add(file1);
-            files.add(file2);
-            files.add(file3);
-
-            filesAnalyzer = new FilesAnalyzer();
-            List<AnalyzedFile> analyzedFiles = filesAnalyzer.analyze(files);
-            List<String> mimeTypes = new ArrayList<>();
-
-            for (AnalyzedFile analyzedFile : analyzedFiles) {
-                System.out.println(analyzedFile.toString());
-                mimeTypes.add(analyzedFile.getType());
-            }
-
-
-            TISSClient = new TISSClient();
-            try {
-                    List<TISSEmployee> searchedEmployes = TISSClient.sendGet("Lukas");
-            } catch (Exception e) {
-                    e.printStackTrace();
-            }
-
-            RepositoryFinder repositoryFinder = new RepositoryFinder();
-            try {
-                repositoryFinder.sendGet(mimeTypes);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
 }
