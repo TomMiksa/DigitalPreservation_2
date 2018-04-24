@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../resources/static/css/app.css">
 </head>
 <body>
-<h2>Digital preservation exercise</h2>
 <div ng-view></div>
 <script src="./webjars/jquery/2.1.4/jquery.min.js"></script>
 <script src="./webjars/lodash/3.10.1/lodash.min.js"></script>
@@ -28,6 +27,8 @@
 <script src="./webjars/angularjs/1.4.8/angular-route.js"></script>
 <script src="../resources/static/js/app.js"></script>
 <script src="../resources/static/js/licenseController.js"></script>
+<script src="../resources/static/js/formController.js"></script>
+
 <link rel="stylesheet" href="./webjars/bootstrap/3.3.6/css/bootstrap.css">
 
 </body>

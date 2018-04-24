@@ -26,7 +26,28 @@ public class Main {
         public String homepage() {
 
                 return "homepage";
+        }
 
+        @RequestMapping(value="searchEmployee", method = RequestMethod.POST)
+        public @ResponseBody List<TISSEmployee> searchEmployee(@RequestParam("name") String name){
+
+            List<TISSEmployee> searchedEmployes = null;
+
+            TISSClient = new TISSClient();
+            try {
+                searchedEmployes = TISSClient.sendGet(name);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            RepositoryFinder repositoryFinder = new RepositoryFinder();
+            try {
+                repositoryFinder.sendGet(null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return searchedEmployes;
         }
 
         @RequestMapping(value = "doUpload", method = RequestMethod.POST)
