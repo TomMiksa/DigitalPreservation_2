@@ -24,6 +24,8 @@ public class FilesAnalyzer {
             } catch(IOException e){
                 e.printStackTrace();
             }
+
+            file.delete();
         }
 
         return analyzedFiles;

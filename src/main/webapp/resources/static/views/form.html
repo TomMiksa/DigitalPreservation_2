@@ -6,12 +6,12 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container pt-5">
     <h2>Name Selection</h2>
 
     <div class="row">
         <div class="col-md-4">
-            <form ng-submit="processForm()">
+            <form ng-submit="processNameForm()">
                 <div id="name-group" class="form-group" ng-class="{ 'has-error' : errorName }">
                     <label>Name</label>
                     <input type="text" ng-model="formData.name" name="name" class="form-control" value="foo" placeholder="Bruce Wayne">
@@ -34,9 +34,40 @@
         </div>
     </div>
 
-    <div class="row">
-        <h2>Sample File Upload</h2>
+    <div class="row pt-5">
+        <div class="col-md-4">
 
+            <h2>Sample File Analyzer</h2>
+
+            <form ng-submit="processDataForm()" id="uploadForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="file" class="form-control" id="files" ng-model="files" name="files" multiple>
+                </div>
+                <button type="submit" class="btn btn-success btn-lg btn-block">
+                    Analyze Files
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row pt-5">
+        <form ng-submit="processNameForm()">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Size</th>
+                <th scope="col">Type</th>
+                <th scope="col">State</th>
+                <th scope="col">Quantity</th>
+            </tr>
+            </thead>
+            <tbody id="filesTable">
+
+            </tbody>
+        </table>
+
+        </form>
     </div>
 </div>
 

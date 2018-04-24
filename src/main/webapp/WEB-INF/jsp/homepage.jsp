@@ -29,7 +29,7 @@
 <script src="../resources/static/js/licenseController.js"></script>
 <script src="../resources/static/js/formController.js"></script>
 
-<link rel="stylesheet" href="./webjars/bootstrap/3.3.6/css/bootstrap.css">
+<link rel="stylesheet" href="./webjars/bootstrap/4.1.0/css/bootstrap.min.css">
 
 <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css' type='text/css' media='all' />
 <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js'></script>
