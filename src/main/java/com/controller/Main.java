@@ -40,13 +40,6 @@ public class Main {
                 e.printStackTrace();
             }
 
-            RepositoryFinder repositoryFinder = new RepositoryFinder();
-            try {
-                repositoryFinder.sendGet(null);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
             return searchedEmployes;
         }
 
