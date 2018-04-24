@@ -8,7 +8,7 @@ app.controller('formController', function($scope, $http) {
             method  : 'POST',
             url     : 'searchEmployee',
             data    : $.param($scope.formData),
-            headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+            headers : { 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }
         }).success(function(data) {
                 console.log(data);
 
