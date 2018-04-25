@@ -138,6 +138,25 @@ app.controller('formController', function($scope, $http) {
 
 
 
+    $(function() {
+        var clarinLs, ls = $('<button class="btn btn-success btn-lg btn-block">\n' +
+            '                        Select License\n' +
+            '                    </button>')
+            .appendTo('#selectLicense')
+            .licenseSelector({
+                showLabels : true,
+                onLicenseSelected : function (license) {
+                    $('body').append($('<pre></pre>').text(JSON.stringify(license, null, 4)))
+                    console.log(license)
+                }
+            });
+
+    });
+
+
+
+
+
 
 
 });
