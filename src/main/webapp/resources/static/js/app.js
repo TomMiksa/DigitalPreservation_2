@@ -6,7 +6,7 @@ app.config(function($routeProvider){
             templateUrl: 'resources/static/views/form.html',
             controller: 'formController'
         })
-        .when('/#report',{
+        .when('/report',{
             templateUrl: 'resources/static/views/report.html',
             controller: 'reportController'
         }).otherwise(
