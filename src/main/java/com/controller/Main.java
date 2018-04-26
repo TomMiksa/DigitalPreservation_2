@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -131,6 +132,24 @@ public class Main {
 
             this.report = report;
             return report;
+        }
+
+        @RequestMapping(value = "getFile", method = RequestMethod.GET)
+        public void getFile(HttpServletResponse response) {
+
+            try {
+                // get your file as InputStream
+                File file = new File("src/main/output/output.json");
+                InputStream is = new FileInputStream(file);
+                // copy it to response's OutputStream
+                org.apache.commons.io.IOUtils.copy(is, response.getOutputStream());
+                response.setContentType("application/octet-stream");
+                response.flushBuffer();
+            } catch (IOException ex) {
+                //log.info("Error writing file to output stream. Filename was '{}'", fileName, ex);
+                throw new RuntimeException("IOError writing file to output stream");
+            }
+
         }
 
 
