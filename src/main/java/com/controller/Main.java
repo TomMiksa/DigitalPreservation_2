@@ -25,6 +25,7 @@ public class Main {
         private static FilesAnalyzer filesAnalyzer;
         private static TISSClient TISSClient;
         private List<AnalyzedFile> analyzedFiles;
+        private Report report = null;
 
         @RequestMapping("/")
         public String homepage() {
@@ -69,13 +70,20 @@ public class Main {
 
 
 
-    @RequestMapping(value="setReport", method = RequestMethod.POST, consumes = {"application/json;charset=UTF-8"}, produces={"application/json;charset=UTF-8"})
-    public @ResponseBody Report setReport(@RequestBody Report report){
+        @RequestMapping(value="setReport", method = RequestMethod.POST, consumes = {"application/json;charset=UTF-8"}, produces={"application/json;charset=UTF-8"})
+        public @ResponseBody Report setReport(@RequestBody Report report){
 
-
+            this.report = report;
             System.out.println(report.toString());
             return report;
-    }
+        }
+
+
+        @RequestMapping(value="getReport", method = RequestMethod.POST, produces={"application/json;charset=UTF-8"})
+        public @ResponseBody Report getReport(){
+
+            return report;
+        }
 
         @RequestMapping(value = "doUpload", method = RequestMethod.POST)
         public @ResponseBody List<AnalyzedFile> doUpload(@RequestParam("files") MultipartFile[] files) {

@@ -201,6 +201,8 @@ app.controller('formController', function($scope, $http) {
 
         });
 
+        window.location.href = '/#report';
+
 
     });
 
