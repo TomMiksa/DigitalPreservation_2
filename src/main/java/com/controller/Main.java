@@ -115,12 +115,12 @@ public class Main {
             finalJson.put("sampleFiles", array);
 
 
-            File dir = new File(RESOURCESPATH);
+            File dir = new File("src/main/output");
             dir.mkdir();
 
             try{
                 // Create a new FileWriter object
-                FileWriter fileWriter = new FileWriter(dir+"/output.json");
+                FileWriter fileWriter = new FileWriter("src/main/output/output.json");
 
                 // Writting the jsonObject into sample.json
                 fileWriter.write(finalJson.toString());
