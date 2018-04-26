@@ -25,8 +25,7 @@ app.controller('reportController', function($scope, $http) {
                             $("#filesTable").append("<tr><td><input disabled name='name[]' value='"+file.name+"'>"
                                 +"</td><td><input disabled name='size[]' value='"+file.size+"'>"
                                 +"</td><td><input disabled name='type[]' value='"+file.type+"'>"
-                                +"</td><td><select disabled name='output[]'><option value='true'>Output</option><option value='false'>Input</option></select>"
-                                +"</td><td><input disabled type='number' value='1' min='0' name='quantity[]'></td></tr>")
+                                +"</td><td><input disabled type='number' value='"+file.quantity+"' min='0' name='quantity[]'></td></tr>")
 
                         });
 
