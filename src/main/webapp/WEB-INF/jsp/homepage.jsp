@@ -26,7 +26,6 @@
 <script src="./webjars/angularjs/1.4.8/angular-resource.js"></script>
 <script src="./webjars/angularjs/1.4.8/angular-route.js"></script>
 <script src="../resources/static/js/app.js"></script>
-<script src="../resources/static/js/licenseController.js"></script>
 <script src="../resources/static/js/formController.js"></script>
 
 <link rel="stylesheet" href="./webjars/bootstrap/4.1.0/css/bootstrap.min.css">
