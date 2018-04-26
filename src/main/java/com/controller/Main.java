@@ -2,6 +2,7 @@ package com.controller;
 
 
 import com.dto.AnalyzedFile;
+import com.dto.Report;
 import com.dto.Repository;
 import com.dto.TISSEmployee;
 import org.springframework.stereotype.Controller;
@@ -65,6 +66,16 @@ public class Main {
 
             return null;
         }
+
+
+
+    @RequestMapping(value="setReport", method = RequestMethod.POST, consumes = {"application/json;charset=UTF-8"}, produces={"application/json;charset=UTF-8"})
+    public @ResponseBody Report setReport(@RequestBody Report report){
+
+
+            System.out.println(report.toString());
+            return report;
+    }
 
         @RequestMapping(value = "doUpload", method = RequestMethod.POST)
         public @ResponseBody List<AnalyzedFile> doUpload(@RequestParam("files") MultipartFile[] files) {

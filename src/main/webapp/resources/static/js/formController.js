@@ -146,10 +146,61 @@ app.controller('formController', function($scope, $http) {
             .licenseSelector({
                 showLabels : true,
                 onLicenseSelected : function (license) {
-                    $('body').append($('<pre></pre>').text(JSON.stringify(license, null, 4)))
+                    $('#license').val(license.name);
                     console.log(license)
                 }
             });
+
+    });
+
+
+
+    $('#generateReport').on("click", function () {
+
+        var $inputs = $('#fileOptionsForm :input,selection');
+        var fileData = [];
+        var i = -1;
+        $inputs.each(function() {
+            var name = this.name;
+            name = name.replace("[]", "");
+
+            if(name == "name"){
+                i++;
+                fileData[i] = {
+                    "name" : $(this).val(),
+                    "type" : "",
+                    "size" : "",
+                    "isOutput" : "",
+                    "quantity" : ""
+                };
+            } else if(name != "") {
+                fileData[i][name] = $(this).val();
+            }
+        });
+
+        var data = {
+            'name':$("#name option:selected").text(),
+            'projectTitle':$('#projectTitle').val(),
+            'license':$('#license').val(),
+            'repository':$("#repository option:selected").text(),
+            'files': fileData
+        };
+
+
+        $http({
+            method  : 'POST',
+            url     : 'setReport',
+            data    : data,
+            headers : { 'Content-Type': 'application/json' }
+        }).success(function(data) {
+            console.log(data);
+
+
+        }).error(function() {
+            console.log("request failed...");
+
+        });
+
 
     });
 
