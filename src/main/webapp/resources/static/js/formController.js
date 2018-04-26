@@ -194,6 +194,9 @@ app.controller('formController', function($scope, $http) {
             headers : { 'Content-Type': 'application/json' }
         }).success(function(data) {
             console.log(data);
+            console.log("Before redirect");
+            window.location.href = '/#report';
+            console.log("After redirect");
 
 
         }).error(function() {
@@ -201,7 +204,7 @@ app.controller('formController', function($scope, $http) {
 
         });
 
-        window.location.href = '/#report';
+
 
 
     });

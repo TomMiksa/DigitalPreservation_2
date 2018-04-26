@@ -5,6 +5,10 @@ public class Repository {
     private String name;
     private String url;
 
+    public Repository(){
+
+    }
+
     public Repository(String name, String url) {
         this.name = name;
         this.url = url;
